@@ -1,8 +1,10 @@
 import cv2
 import os
 
-source_path = '/Users/ramkishore31/Neural Networks/final_project/dataset/lowquality_videos/'
-destination_path = '/Users/ramkishore31/Neural Networks/final_project/dataset/lowquality_frames/'
+source_path = './resources/Videos/'
+destination_path = './resources/Frames/'
+
+
 speaker_list = next(os.walk(source_path))[1]
 for speaker in speaker_list:
     for filename in os.listdir(source_path + str(speaker)+'/'):

@@ -1,14 +1,15 @@
-
 import cv2
 import os
 from scipy import misc
 previous_mouth = None
 previous_image = None
-source_path = '/Users/ramkishore31/Neural Networks/final_project/dataset/lowquality_frames/'
-destination_path = '/Users/ramkishore31/Neural Networks/final_project/dataset/lowquality_mouthsegmentation/'
-mouth_cascade = cv2.CascadeClassifier('mouth.xml')
+
+source_path = './resources/Frames/'
+destination_path = './resources/Mouth/'
+mouth_cascade = cv2.CascadeClassifier('Mouth.xml')
 speaker_list = next(os.walk(source_path))[1]
 for speaker in speaker_list:
+    print("Extracting mouth for speaker",speaker)
     videoname_list = next(os.walk(source_path + str(speaker)+'/'))[1]
     for video_name in videoname_list:
         frame_list = next(os.walk(source_path + str(speaker)+'/' + str(video_name) + '/'))[2]
@@ -24,7 +25,7 @@ for speaker in speaker_list:
                     scaleFactor=1.1,
                     minNeighbors=5,
                     minSize=(40, 40),
-                    flags = cv2.cv.CV_HAAR_SCALE_IMAGE
+                    flags = 0|cv2.CASCADE_SCALE_IMAGE
                 )
                 if len(mouth) == 0:
                     mouth = previous_mouth
